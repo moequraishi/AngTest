@@ -1,6 +1,6 @@
 # Angular Frontend Test for DiscoverOrg
-## Uses Bootstrap 4 / Angular Material
-### by Moe Quraishi (www.HireMoe.com)
+Uses Bootstrap 4 / Angular Material
+by Moe Quraishi (www.HireMoe.com)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.5.
 
