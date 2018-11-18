@@ -25,7 +25,11 @@
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button (click)="getUsers()" mat-raised-button color="primary">Search</button>
+          <button
+            (click)="getUsers()"
+            [disabled]="userSearchForm.invalid"
+            mat-raised-button
+            color="primary">Search</button>
         </mat-card-actions>
       </mat-card>
     </div>
