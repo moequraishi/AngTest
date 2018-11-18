@@ -1,0 +1,50 @@
+.container {
+  padding-top: 40px;
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .row {
+    margin-bottom: 25px;
+  }
+
+  .img-fluid {
+    margin-bottom: 20px;
+  }
+}
+
+::ng-deep mat-tab-body{
+  background-color: #ffffff;
+  padding: 20px;
+
+  counter-reset: repoCounter;
+}
+
+.content-wrap{
+  div {
+    display: inline-block;
+    vertical-align: top;
+
+    &:last-child {
+      margin-left: 10px;
+    }
+  }
+}
+
+.repos::before,
+.starred-repos::before{
+  font-weight: 700;
+  counter-increment: repoCounter;
+  content: counter(repoCounter) ". ";
+}
+
+.search-form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+
+  .mat-form-field {
+    width: 100%;
+  }
+}

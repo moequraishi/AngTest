@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center">
+        Search for Github user
+      </h1>
+
+      <mat-card class="search-form">
+        <mat-card-header>
+          <mat-card-title>Search Github Users</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            Please insert user name and click on search, or press enter to retrieve user's Github information.
+          </p>
+
+          <div class="search-box">
+            <mat-form-field class="example-full-width">
+              <input (keyup.enter)="getUsers()" matInput placeholder="Username" [formControl]="userSearchForm">
+
+              <mat-error *ngIf="userSearchForm.hasError('required')">
+                Username is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button (click)="getUsers()" mat-raised-button color="primary">Search</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="gitHubData.items">
+    <div class="col-md" *ngIf="gitHubData.items[0]">
+
+      <mat-tab-group color="accent" backgroundColor="primary">
+        <mat-tab label="User Info">
+          <div class="content-wrap">
+            <div>
+              <img class="img-fluid" src="{{gitHubData.items[0].avatar_url}}" alt="User Avatar">
+            </div>
+            <div>
+              <p>
+                <strong>Name: </strong>
+                <a href="{{gitHubData.items[0].html_url}}">{{ gitHubData.items[0].login }}</a>
+              </p>
+              <p>
+                <strong>Score: </strong>
+                {{gitHubData.items[0].score}}
+              </p>
+            </div>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Repos">
+          <div class="repos" *ngFor="let repo of gitRepoData">
+              <span *ngIf="repo.owner.login === gitHubData.items[0].login">
+                <a target="_blank" href="{{repo.html_url}}">{{repo.name}}</a>
+              </span>
+          </div>
+          <div *ngIf="gitRepoData && gitRepoData.length < 1">
+            User has no repo(s).
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Starred">
+          <div class="starred-repos" *ngFor="let repo of gitStarredData">
+            <a target="_blank" href="{{repo.html_url}}">{{repo.name}}</a>
+          </div>
+          <div *ngIf="gitStarredData && gitStarredData.length < 1">
+            User has no starred repo.
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+
+    </div>
+  </div>
+</div>
